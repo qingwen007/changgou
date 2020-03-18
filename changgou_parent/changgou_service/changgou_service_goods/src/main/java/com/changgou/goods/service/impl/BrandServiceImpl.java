@@ -70,7 +70,7 @@ public class BrandServiceImpl implements BrandService {
                 criteria.andLike("letter","%"+searchMap.get("letter")+"%");
             }
         }
-        List<Brand> brandList= brandMapper.selectByExample(criteria);
+        List<Brand> brandList= brandMapper.selectByExample(example);
         return brandList;
     }
 
