@@ -70,7 +70,7 @@ public class BrandController {
     @PostMapping("/searchPage/{page}/{size}")
     public  Result<List<Brand>> findPage(@RequestParam Map searchMap, @PathVariable("page") int page,@PathVariable("size") int size)
     {
-        int i=1/0; //错误测试
+        int i=1/0;
         Page<Brand> pageInfo = brandService.findPage(searchMap,page,size);
         PageResult  pageResult=new PageResult(pageInfo.getTotal(),pageInfo.getResult());
         return new Result<List<Brand>>(true,StatusCode.OK,"查询成功",pageResult);
