@@ -59,7 +59,7 @@ public class BrandController {
         return new Result<List<Brand>>(true,StatusCode.OK,"查询成功",list);
     }
 
-    @GetMapping("/search/{page}/{size}")
+    @PostMapping("/search/{page}/{size}")
     public  Result<List<Brand>> findPage(@PathVariable("page") int page,@PathVariable("size") int size)
     {
         Page<Brand> pageInfo = brandService.findPage(page,size);
@@ -67,4 +67,12 @@ public class BrandController {
         return new Result<List<Brand>>(true,StatusCode.OK,"查询成功",pageResult);
     }
 
+    @PostMapping("/searchPage/{page}/{size}")
+    public  Result<List<Brand>> findPage(@RequestParam Map searchMap, @PathVariable("page") int page,@PathVariable("size") int size)
+    {
+        int i=1/0; //错误测试
+        Page<Brand> pageInfo = brandService.findPage(searchMap,page,size);
+        PageResult  pageResult=new PageResult(pageInfo.getTotal(),pageInfo.getResult());
+        return new Result<List<Brand>>(true,StatusCode.OK,"查询成功",pageResult);
+    }
 }
