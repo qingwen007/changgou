@@ -1,0 +1,4 @@
+
+//开机同步启动容器
+docker update --restart=always tracker
+docker update --restart=always storage

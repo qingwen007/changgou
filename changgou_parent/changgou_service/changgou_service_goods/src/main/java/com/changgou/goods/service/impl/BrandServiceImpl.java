@@ -81,4 +81,23 @@ public class BrandServiceImpl implements BrandService {
         return page1;
     }
 
+    @Override
+    public Page<Brand> findPage(Map searchMap, int page, int size) {
+        PageHelper.startPage(page,size);
+        Example example=new Example(Brand.class);
+        Example.Criteria criteria=example.createCriteria();
+        if(searchMap!=null)
+        {
+            if(searchMap.get("name")!=null&&!"".equals(searchMap.get("name")))
+            {
+                criteria.andLike("name","%"+searchMap.get("name")+"%");
+            }
+            if(searchMap.get("letter")!=null&&!"".equals(searchMap.get("letter"))) {
+                criteria.andLike("letter","%"+searchMap.get("letter")+"%");
+            }
+        }
+        Page<Brand> page1=(Page<Brand>) brandMapper.selectByExample(example);
+        return page1;
+    }
+
 }

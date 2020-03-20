@@ -27,4 +27,6 @@ public interface BrandService {
     List<Brand> list(Map<String,Object> searchMap);
 
     Page<Brand> findPage(int page, int size);
+
+    Page<Brand> findPage(Map searchMap, int page, int size);
 }
